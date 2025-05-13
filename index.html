@@ -5,144 +5,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tu es mon parfum préféré</title>
   <style>
-    body {
+     {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background: url('https://images.unsplash.com/photo-1524592846616-9f51f3d4a768?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      overflow-x: hidden;
       color: #5e1c43;
       text-align: center;
+      padding: 15px;
+      line-height: 1.5;
     }
 
+    /* Typographie responsive */
     h1 {
-      font-size: 3em;
-      margin-top: 20px;
-      animation: fadeInDown 1.5s ease;
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      margin: 15px 0;
       background: rgba(255,255,255,0.8);
-      padding: 10px 20px;
+      padding: 10px 15px;
       border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
     }
 
     p {
-      font-size: 1.2em;
-      max-width: 600px;
-      padding: 10px 20px;
+      font-size: clamp(1rem, 4vw, 1.2rem);
       background: rgba(255,255,255,0.85);
       border-radius: 20px;
-      animation: fadeInUp 2s ease;
+      padding: 12px 15px;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 15px;
     }
 
     .photo {
-      width: 200px;
-      height: 200px;
+      width: clamp(120px, 40vw, 200px);
+      height: clamp(120px, 40vw, 200px);
       border-radius: 50%;
       object-fit: cover;
-      margin-top: 20px;
+      margin: 10px 0;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      animation: fadeInDown 1.5s ease;
     }
 
+    /* Boutons responsive */
     .button-container {
-      margin-top: 30px;
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+      width: 100%;
+      max-width: 600px;
     }
 
     .btn {
       background: #c94f7c;
       color: white;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border: none;
       border-radius: 30px;
-      font-size: 1em;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
       cursor: pointer;
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      transition: background 0.3s;
+      transition: all 0.3s;
+      flex: 1 1 120px;
+      max-width: 200px;
     }
 
     .btn:hover {
       background: #a23a64;
+      transform: translateY(-2px);
     }
 
+    /* Popups responsive */
     .popup, .gallery {
-      display: none;
       position: fixed;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      max-height: 70vh;
+      top: 5%;
+      left: 5%;
+      right: 5%;
+      max-height: 80vh;
       overflow-y: auto;
       background: rgba(255,255,255,0.95);
-      padding: 20px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 600px;
-      z-index: 999;
+      padding: 15px;
+      border-radius: 15px;
+      z-index: 1000;
       box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      display: none;
     }
 
     .popup h2, .gallery h2 {
-      margin-top: 0;
+      font-size: clamp(1.3rem, 5vw, 1.8rem);
       color: #a23a64;
+      margin-bottom: 15px;
     }
 
     .popup ul {
-      text-align: left;
       padding-left: 20px;
+      text-align: left;
     }
 
     .popup ul li {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
     }
 
-    .close {
-      margin-top: 10px;
-      background: #888;
-    }
-
+    /* Galerie responsive */
     .gallery img, .gallery video {
-      width: 60%;
-      margin-top: 10px;
+      width: 100%;
+      margin: 8px 0;
       border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
     }
 
-    footer {
-      margin: 40px 0 20px;
-      font-size: 0.9em;
-      color: #5e1c43;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 10px 20px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    .gallery img:hover, .gallery video:hover {
+      transform: scale(1.02);
     }
 
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 0.7; }
-      100% { transform: translateY(-800px) scale(1.5) rotate(45deg); opacity: 0; }
+    /* Lightbox responsive */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1001;
+      display: none;
+      justify-content: center;
+      align-items: center;
     }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-50px); }
-      to { opacity: 1; transform: translateY(0); }
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 90vh;
+      object-fit: contain;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
+    /* Cœurs animés */
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       background: red;
       transform: rotate(45deg);
       animation: floatUp 6s infinite;
@@ -153,14 +181,70 @@
     .heart::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       background: red;
       border-radius: 50%;
     }
 
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { top: 0; left: -10px; }
+    .heart::before { top: -7px; left: 0; }
+    .heart::after { top: 0; left: -7px; }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      font-size: clamp(0.8rem, 3vw, 0.9rem);
+      color: #5e1c43;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 15px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    /* Animations */
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 0.7; }
+      100% { transform: translateY(-100vh) scale(1.5) rotate(45deg); opacity: 0; }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Effets d'entrée */
+    h1, .photo, p {
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    /* Optimisation pour très petits écrans */
+    @media (max-width: 400px) {
+      .btn {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+      }
+      
+      .popup, .gallery {
+        top: 2%;
+        left: 2%;
+        right: 2%;
+        max-height: 85vh;
+        padding: 10px;
+      }
+    }
+
+    /* Mode paysage sur mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .popup, .gallery {
+        max-height: 70vh;
+      }
+    }
   </style>
 </head>
 <body>
@@ -169,7 +253,7 @@
   <h1>Tu es mon parfum préféré 🌹</h1>
 
   <p>Chaque instant avec toi est comme une fragrance douce et inoubliable.<br>
-  Merci d’être la plus belle note de ma vie.</p>
+  Merci d'être la plus belle note de ma vie.</p>
 
   <div class="button-container">
     <button class="btn" onclick="document.getElementById('proverbes').style.display='block'">📝 Mes mots pour toi</button>
@@ -177,7 +261,6 @@
     <button class="btn" onclick="startQuiz()">🎮 Jeu d'amour</button>
   </div>
 
- 
   <div class="popup" id="quizPopup">
     <h2>🎮 Teste ton amour ❤️</h2>
     <div id="quizContainer">
@@ -189,117 +272,110 @@
     <button class="btn close" onclick="closeQuiz()">Fermer</button>
   </div>
 
- 
   <div class="popup" id="proverbes">
     <h2>📝Ce que mon cœur ressent pour toi.</h2>
     <ul>
-<li>L’amour est la musique silencieuse que mon cœur joue pour toi.</li>
-<li>Tu es ce rêve que je n’ose plus quitter, même réveillé.</li>
-<li>Mon amour pour toi ne connaît ni fin ni frontières.</li>
-<li>Rien n’arrête ce qu’on ressent quand c’est toi.</li>
-<li>Ton regard me parle mieux que mille poèmes.</li>
-<li>Être aimé de toi, c’est le plus grand bonheur que je connaisse.</li>
-<li>Ton amour est ma plus précieuse richesse.</li>
-<li>Tes baisers racontent des histoires que seuls nos cœurs comprennent.</li>
-<li>Mon cœur était vide avant que tu y entres.</li>
-<li>Mon bonheur commence toujours là où tu es.</li>
-<li>Ton silence me touche plus fort que bien des mots.</li>
-<li>Grâce à toi, tout est plus lumineux dans ma vie.</li>
-<li>C’est ton sourire qui a ouvert la porte de mon cœur.</li>
-<li>Tout ce que tu touches devient précieux pour moi.</li>
-<li>Aimer avec toi, c’est donner un sens nouveau à la vie.</li>
-<li>Tu fais de ma routine une aventure magique.</li>
-<li>Tu rends mes journées banales merveilleusement folles.</li>
-<li>Mon cœur te comprend même sans mots.</li>
-<li>À tes côtés, chaque moment devient une célébration.</li>
-<li>Ton rire éclaire mon âme.</li>
-<li>Ton amour est une fragrance que je reconnais les yeux fermés.</li>
-<li>Te voir chaque jour, c’est toucher un rêve du doigt.</li>
-<li>Même mon cœur chuchote ton prénom.</li>
-<li>Ta présence est mon équilibre.</li>
-<li>Avec toi, l’amour devient un chemin évident.</li>
-<li>Ton amour est un poème que je récite en silence.</li>
-<li>Ton amour donne de la couleur à ma vie.</li>
-<li>Dans ton regard, je trouve ma paix.</li>
-<li>Tu es ma réponse au mot "amour".</li>
-<li>Ton temps est le plus beau cadeau.</li>
-<li>Chaque instant avec toi est un bout d’éternité.</li>
-<li>Avec toi, je veux parcourir tous les chemins de l’amour.</li>
-<li>Tu adoucis mes jours les plus durs.</li>
-<li>Aimer, c’est faire la promesse de demain, chaque jour.</li>
-<li>Ton amour est mon endroit préféré au monde.</li>
-<li>Nos années passeront, mais pas mon amour pour toi.</li>
-<li>Tu remplis tout ce que je suis.</li>
-<li>Ta voix me ramène toujours à la maison.</li>
-<li>L’absence de toi rend chaque minute plus longue.</li>
-<li>Tu éclaires mes jours, tu apaises mes nuits.</li>
-<li>Mon cœur battra toujours à ton rythme.</li>
-<li>Avec toi, l’amour prend tout son sens.</li>
-<li>Dire oui à toi, c’est dire oui à l’infini.</li>
-<li>Tu es cette belle surprise que la vie m’a offerte.</li>
-<li>Mon cœur danse à ton souvenir.</li>
-<li>Aimer avec toi, c’est avancer en harmonie.</li>
-<li>Où que l’on soit, si tu es là, je suis bien.</li>
-<li>Tu es le sucre dans mon café, la douceur de mes jours.</li>
-<li>Ton amour est ce qui me fait avancer chaque matin.</li>
-<li>Ton sourire arrête le temps et fait battre mon cœur plus fort.</li>
-
-      
+      <li>L'amour est la musique silencieuse que mon cœur joue pour toi.</li>
+      <li>Tu es ce rêve que je n'ose plus quitter, même réveillé.</li>
+      <li>Mon amour pour toi ne connaît ni fin ni frontières.</li>
+      <li>Rien n'arrête ce qu'on ressent quand c'est toi.</li>
+      <li>Ton regard me parle mieux que mille poèmes.</li>
+      <li>Être aimé de toi, c'est le plus grand bonheur que je connaisse.</li>
+      <li>Ton amour est ma plus précieuse richesse.</li>
+      <li>Tes baisers racontent des histoires que seuls nos cœurs comprennent.</li>
+      <li>Mon cœur était vide avant que tu y entres.</li>
+      <li>Mon bonheur commence toujours là où tu es.</li>
+      <li>Ton silence me touche plus fort que bien des mots.</li>
+      <li>Grâce à toi, tout est plus lumineux dans ma vie.</li>
+      <li>C'est ton sourire qui a ouvert la porte de mon cœur.</li>
+      <li>Tout ce que tu touches devient précieux pour moi.</li>
+      <li>Aimer avec toi, c'est donner un sens nouveau à la vie.</li>
+      <li>Tu fais de ma routine une aventure magique.</li>
+      <li>Tu rends mes journées banales merveilleusement folles.</li>
+      <li>Mon cœur te comprend même sans mots.</li>
+      <li>À tes côtés, chaque moment devient une célébration.</li>
+      <li>Ton rire éclaire mon âme.</li>
+      <li>Ton amour est une fragrance que je reconnais les yeux fermés.</li>
+      <li>Te voir chaque jour, c'est toucher un rêve du doigt.</li>
+      <li>Même mon cœur chuchote ton prénom.</li>
+      <li>Ta présence est mon équilibre.</li>
+      <li>Avec toi, l'amour devient un chemin évident.</li>
+      <li>Ton amour est un poème que je récite en silence.</li>
+      <li>Ton amour donne de la couleur à ma vie.</li>
+      <li>Dans ton regard, je trouve ma paix.</li>
+      <li>Tu es ma réponse au mot "amour".</li>
+      <li>Ton temps est le plus beau cadeau.</li>
+      <li>Chaque instant avec toi est un bout d'éternité.</li>
+      <li>Avec toi, je veux parcourir tous les chemins de l'amour.</li>
+      <li>Tu adoucis mes jours les plus durs.</li>
+      <li>Aimer, c'est faire la promesse de demain, chaque jour.</li>
+      <li>Ton amour est mon endroit préféré au monde.</li>
+      <li>Nos années passeront, mais pas mon amour pour toi.</li>
+      <li>Tu remplis tout ce que je suis.</li>
+      <li>Ta voix me ramène toujours à la maison.</li>
+      <li>L'absence de toi rend chaque minute plus longue.</li>
+      <li>Tu éclaires mes jours, tu apaises mes nuits.</li>
+      <li>Mon cœur battra toujours à ton rythme.</li>
+      <li>Avec toi, l'amour prend tout son sens.</li>
+      <li>Dire oui à toi, c'est dire oui à l'infini.</li>
+      <li>Tu es cette belle surprise que la vie m'a offerte.</li>
+      <li>Mon cœur danse à ton souvenir.</li>
+      <li>Aimer avec toi, c'est avancer en harmonie.</li>
+      <li>Où que l'on soit, si tu es là, je suis bien.</li>
+      <li>Tu es le sucre dans mon café, la douceur de mes jours.</li>
+      <li>Ton amour est ce qui me fait avancer chaque matin.</li>
+      <li>Ton sourire arrête le temps et fait battre mon cœur plus fort.</li>
     </ul>
     <button class="btn close" onclick="document.getElementById('proverbes').style.display='none'">Fermer</button>
   </div>
 
-  
   <div class="popup gallery" id="souvenirs">
     <h2>📸 Nos souvenirs</h2>
-    <img src="image\IMG-20250504-WA0080.jpg" alt="Souvenir 1">
-    <img src="image\IMG-20250504-WA0032.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0033.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0037.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0042.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0045.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0047.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0049.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0057.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0059.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0061.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0063.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0065.jpg" alt="Souvenir 2">
-    <img src="image\IMG-20250504-WA0067.jpg" alt="Souvenir 2">
+    <img src="image\IMG-20250504-WA0080.jpg" alt="Souvenir 1" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0032.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0033.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0037.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0042.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0045.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0047.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0049.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0057.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0059.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0061.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0063.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0065.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0067.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0071.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0034.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0036.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0041.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0056.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0055.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\IMG-20250504-WA0086.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\WhatsApp Image 2025-05-04 à 21.42.15_42e9e412.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
+    <img src="image\WhatsApp Image 2025-05-04 à 21.42.16_74a890d8.jpg" alt="Souvenir 2" onclick="openLightbox(this.src, 'image')">
     
-    <img src="image\IMG-20250504-WA0071.jpg" alt="Souvenir 2">
-     <img src="image\IMG-20250504-WA0034.jpg" alt="Souvenir 2">
-      <img src="image\IMG-20250504-WA0036.jpg" alt="Souvenir 2">
-       <img src="image\IMG-20250504-WA0041.jpg" alt="Souvenir 2">
-        <img src="image\IMG-20250504-WA0056.jpg" alt="Souvenir 2">
-         <img src="image\IMG-20250504-WA0055.jpg" alt="Souvenir 2">
-          <img src="image\IMG-20250504-WA0086.jpg" alt="Souvenir 2">
-           <img src="image\WhatsApp Image 2025-05-04 à 21.42.15_42e9e412.jpg" alt="Souvenir 2">
-            <img src="image\WhatsApp Image 2025-05-04 à 21.42.16_74a890d8.jpg" alt="Souvenir 2">
-          
-    
-   
-    
-    <video controls  >
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
       <source src="image\WhatsApp Vidéo 2025-05-06 à 09.40.26_0733ba31.mp4" type="video/mp4">
     </video>
-      <video controls  >
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
       <source src="image\WhatsApp Vidéo 2025-05-05 à 17.32.13_43988ef1.mp4" type="video/mp4">
     </video>
-   
-    
-    
-     
-     <video controls  >
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
       <source src="image\WhatsApp Vidéo 2025-05-06 à 09.39.53_af8e1eb6.mp4" type="video/mp4">
     </video>
     
-     
     <button class="btn close" onclick="document.getElementById('souvenirs').style.display='none'">Fermer</button>
   </div>
 
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" style="display:none;">
+    <video id="lightbox-video" class="lightbox-content" controls style="display:none;"></video>
+  </div>
+
   <footer>
-    Fait avec ❤️ par ton développeur amoureux
+    Fait par EMOTIXEL ❤️ ton développeur amoureux
   </footer>
 
   <script>
@@ -325,9 +401,8 @@
       { q: "Quel est mon jeu vidéo préféré ?", a: "fifa" },
       { q: "Quelle est la ville où je veux vivre ?", a: "paris" },
       { q: "J'aime le jour ou la nuit ?", a: "la nuit" },
-      { q: "Quel est mon rêve d’enfant ?", a: "pilote" },
-      { q: "Quelle langue j’aimerais apprendre ?", a: "espagnol" },
-      { q: "Quel est mon objectif en tant que président des étudiants ?", a: "améliorer la vie des étudiants" },
+      { q: "Quel est mon rêve d'enfant ?", a: "pilote" },
+      { q: "Quelle langue j'aimerais apprendre ?", a: "espagnol" },
       { q: "Quel style de tenue je préfère que tu porte souvent ?", a: "sexy" },
       { q: "Où avons-nous eu notre premier baiser ?", a: "chez toi" },
       { q: "Quelle est ma passion cachée ?", a: "leadership" },
@@ -335,9 +410,9 @@
       { q: "J'aime porter jean ou jogging ?", a: "jean" },
       { q: "J'ai combien de sœur ?", a: "0" },
       { q: "Quel est mon animal préféré ?", a: "chien" },
-      { q: "Quel sport j’aime regarder ?", a: "football" },
+      { q: "Quel sport j'aime regarder ?", a: "football" },
       { q: "Quelle est ma marque de vêtements préférée ?", a: "balenciaga" },
-      { q: "Quelle application j’utilise le plus ?", a: "whatsapp" },
+      { q: "Quelle application j'utilise le plus ?", a: "whatsapp" },
       { q: "Dans quelle filière je suis ?", a: "Réseau informatique et Télécommunication" },
       { q: "Quel est mon dessert favori ?", a: "rien" },
       { q: "Quelle série aimons-nous regarder ensemble ?", a: "365 jours" },
@@ -349,19 +424,19 @@
       { q: "Quelle est ma plus grande peur ?", a: "l'échec" },
       { q: "Que suis-je prêt à faire pour toi ?", a: "tout" },
       { q: "Quel est mon pseudo sur les réseaux sociaux ?", a: "fabrice tss" },
-      { q: "Quel code promo j’utilise pour mes services ?", a: "festof12" },
+      { q: "Quel code promo j'utilise pour mes services ?", a: "festof12" },
       { q: "Quelle est ma position préférée pour dormir ?", a: "sur le dos" },
       { q: "Quel est mon signe astrologique ?", a: "capricorn" },
       { q: "Quel pays aimerais-je visiter avec toi ?", a: "canada" },
       { q: "Quelle est la chose que je dis souvent ?", a: "je vais te lancer caillou" },
       { q: "Quel est le nom de mon entreprise ?", a: "festof" },
       { q: "Quelle est la chose qui me fait le plus rire chez toi ?", a: "ma folie" },
-      { q: "Combien d’enfants veux-tu ?", a: "4" },
+      { q: "Combien d'enfants veux-tu ?", a: "4" },
       { q: "Quel est mon joueur préféré ?", a: "cristiano" },
       { q: "Quel est mon âge ?", a: "22 ans" },
       { q: "Quel est mon groupe sanguin ?", a: "ab+" },
       { q: "Quel est mon emoji préféré ?", a: "❤️" },
-      { q: "Quel est mon résultat d’électrophorèse ?", a: "aa" },
+      { q: "Quel est mon résultat d'électrophorèse ?", a: "aa" },
       { q: "Quel est le prénom de ma copine ?", a: "estelle" },
       { q: "Quel est mon club préferé ?", a: "real" },
       { q: "Quel est mon deuxième prénom ?", a: "oussou" },
@@ -393,11 +468,23 @@
     function submitAnswer() {
       const userAnswer = document.getElementById('quizAnswer').value.trim().toLowerCase();
       const correctAnswer = currentQuiz[index].a.toLowerCase();
-      if (userAnswer === correctAnswer) score++;
+      
+      if (userAnswer === correctAnswer) {
+        document.getElementById('quizResult').innerText = "✅ Correct!";
+        document.getElementById('quizResult').style.color = "#27ae60";
+        score++;
+      } else {
+        document.getElementById('quizResult').innerText = "❌ Faux!";
+        document.getElementById('quizResult').style.color = "#e74c3c";
+       
+      }
 
       index++;
       if (index < 5) {
-        showQuestion();
+        setTimeout(() => {
+          document.getElementById('quizResult').innerText = '';
+          showQuestion();
+        }, 1000);
       } else {
         document.getElementById('quizQuestion').style.display = 'none';
         document.getElementById('quizAnswer').style.display = 'none';
@@ -412,15 +499,41 @@
       document.getElementById('quizAnswer').style.display = 'inline';
       document.querySelector('#quizContainer button').style.display = 'inline';
     }
-    const galleryItems = document.querySelectorAll('.gallery img, .gallery video');
-    galleryItems.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        item.style.transform = 'scale(1.1)';
-      });
-      item.addEventListener('mouseleave', () => {
-        item.style.transform = 'scale(1)';
-      });
-    });
+
+    function openLightbox(src, type) {
+      event.stopPropagation(); // Empêche la fermeture immédiate
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const video = document.getElementById('lightbox-video');
+      
+      if (type === 'image') {
+        img.src = src;
+        img.style.display = 'block';
+        video.style.display = 'none';
+      } else {
+        video.src = src;
+        video.style.display = 'block';
+        img.style.display = 'none';
+      }
+      
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const video = document.getElementById('lightbox-video');
+      
+      lightbox.style.display = 'none';
+      video.pause();
+    }
+
+    // Empêche la propagation du clic sur le contenu de la lightbox
+    document.getElementById('lightbox-img').onclick = function(e) {
+      e.stopPropagation();
+    };
+    document.getElementById('lightbox-video').onclick = function(e) {
+      e.stopPropagation();
+    };
   </script>
 </body>
 </html>
