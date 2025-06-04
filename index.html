@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tu es mon parfum préféré</title>
   <style>
-     {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background: url('https://images.unsplash.com/photo-1524592846616-9f51f3d4a768?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
@@ -245,10 +240,60 @@
         max-height: 70vh;
       }
     }
+    .code-gate {
+  position: fixed;
+  inset: 0;
+  background: #fff0f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.gate-box {
+  text-align: center;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.gate-box input {
+  padding: 10px;
+  width: 200px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.gate-box button {
+  padding: 10px 20px;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.gate-box button:hover {
+  background-color: #d81b60;
+}
+
   </style>
 </head>
 <body>
-
+<div id="codeGate" class="code-gate">
+  <div class="gate-box">
+    <h2>🔒 Accès protégé</h2>
+    <p>Entre le code secret pour accéder au site</p>
+    <input type="password" id="gateInput" placeholder="Code secret" />
+    <button onclick="validateCode()">Entrer</button>
+    <p id="gateMessage"></p>
+  </div>
+</div>
   <img src="image\WhatsApp Image 2025-05-04 à 21.26.43_8d14f0b4 - Copie.jpg" alt="Ma belle" class="photo">
   <h1>Tu es mon parfum préféré 🌹</h1>
 
@@ -364,6 +409,75 @@
     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
       <source src="image\WhatsApp Vidéo 2025-05-06 à 09.39.53_af8e1eb6.mp4" type="video/mp4">
     </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-05-05 à 17.34.05_1f8361fa.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.14.31_2c5d6083.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.14.50_f106ffa0.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.08_96830b32.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.14_b997b9c2.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.15_6980c155.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.16_7bbf3dfd.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.16_bf564406.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.17_4291c411.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.18_92d9a652.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.18_e58b6743.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.19_8cc1729f.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.20_fc74dc4b.mp4" type="video/mp4">
+    </video>
+    <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.21_0f379e79.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.21_83d41f4b.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.22_d349b600.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.23_c2f35562.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.24_58293f8f.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.33_751575fc.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.34_da722a08.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 21.20.35_529c9082.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 22.09.05_0f3cc7b4.mp4" type="video/mp4">
+    </video>
+     <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
+      <source src="image\WhatsApp Vidéo 2025-06-03 à 22.09.06_80807f7c.mp4" type="video/mp4">
+   
     
     <button class="btn close" onclick="document.getElementById('souvenirs').style.display='none'">Fermer</button>
   </div>
@@ -446,6 +560,15 @@
       { q: "Environ combien de fois nous faisons l'amour par mois ?", a: "4" },
       { q: "Pour notre 1ere sortie, on est aller dans quel resto ?", a: "code bar" },
       { q: "Quel est la couleur préférée de ma copine ?", a: "bleu" },
+      { q: "Que fais-je quand je suis stressé ?", a: "prendre une boisson alcolisée" },
+{ q: "Quel surnom m’as-tu donné ?", a: "mon lopaire" },
+{ q: "Quelle partie de ton corps j’aime le plus ?", a: "les seins" },
+{ q: "À quoi est-ce que je suis le plus accro ?", a: "moi" },
+{ q: "Quel est mon chiffre favori ?", a: "7" },
+{ q: "Quel mot me décrit le mieux ?", a: "risque" },
+{ q: "Quel surnom je t’ai donné en premier ?", a: "ma folle" },
+{ q: "Quelle est ma devise dans la vie ?", a: "Qui ne risque rien n'a rien" },
+{ q: "Quelle est ma plus grande fierté ?", a: "notre relation" },
     ];
 
     let currentQuiz = [], score = 0, index = 0;
@@ -534,6 +657,23 @@
     document.getElementById('lightbox-video').onclick = function(e) {
       e.stopPropagation();
     };
+    function validateCode() {
+  const correctCode = "2025@@"; // 🔑 Ton code ici
+  const input = document.getElementById("gateInput").value.trim();
+  const message = document.getElementById("gateMessage");
+
+  if (input === correctCode) {
+    document.getElementById("codeGate").style.display = "none";
+    // Optionnel : mémorise le code (évite de redemander à chaque fois)
+    
+  } else {
+    message.textContent = "Code incorrect. Réessaie 😢";
+    message.style.color = "#e74c3c";
+  }
+}
+
+
+;
   </script>
 </body>
 </html>
