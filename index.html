@@ -324,12 +324,7 @@
   </style>
 </head>
 <body>
-    <div id="introVideo" class="intro-video">
-  <video id="introVideoPlayer" autoplay controls>
-    <source src="image\WhatsApp Vidéo 2025-06-18 à 14.30.47_f0d7c300.mp4" type="video/mp4">
-    
-  </video>
-</div>
+   
 <div id="codeGate" class="code-gate">
   <div class="gate-box">
     <h2>🔒 Accès protégé</h2>
@@ -522,7 +517,7 @@
     </video>
      <video controls onclick="openLightbox(this.querySelector('source').src, 'video')">
       <source src="image\WhatsApp Vidéo 2025-06-03 à 22.09.06_80807f7c.mp4" type="video/mp4">
-   
+   </video>
     
     <button class="btn close" onclick="document.getElementById('souvenirs').style.display='none'">Fermer</button>
   </div>
@@ -719,7 +714,7 @@
       e.stopPropagation();
     };
     function validateCode() {
-      const correctCode = "Estelle"; 
+      const correctCode = "2025@@"; 
       const input = document.getElementById("gateInput").value.trim();
       const message = document.getElementById("gateMessage");
 
